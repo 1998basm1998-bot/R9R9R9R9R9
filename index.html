@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>النظام المحاسبي - 2008</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>النظام المحاسبي</h2>
+        <button class="tab-link active" onclick="openTab(event, 'company')">بيانات الشركة</button>
+        <button class="tab-link" onclick="openTab(event, 'accounts')">إضافة حساب جديد</button>
+        <button class="tab-link" onclick="openTab(event, 'journal')">قيود اليومية</button>
+        <button class="tab-link" onclick="openTab(event, 'expenses')">مصروفات مباشرة</button>
+        <button class="tab-link" onclick="openTab(event, 'reports')">التقارير والتحليل</button>
+    </div>
+
+    <div class="main-content">
+
+        <div id="company" class="tab-content" style="display: block;">
+            <h3>بيانات الشركة</h3>
+            <form id="companyForm">
+                <div class="form-group"><label>اسم الشركة:</label><input type="text" id="compName"></div>
+                <div class="form-group"><label>سجل تجاري:</label><input type="text" id="compReg"></div>
+                <div class="form-group"><label>بطاقة ضريبية:</label><input type="text" id="compTax"></div>
+                <div class="form-group"><label>العنوان:</label><input type="text" id="compAddress"></div>
+                <div class="form-group"><label>التليفون:</label><input type="text" id="compPhone"></div>
+                <div class="form-group"><label>رأس المال المرخص:</label><input type="number" id="compCap1"></div>
+                <div class="form-group"><label>رأس المال المصدر:</label><input type="number" id="compCap2"></div>
+                <button type="submit" class="btn">حفظ التعديلات</button>
+            </form>
+        </div>
+
+        <div id="accounts" class="tab-content">
+            <h3>دليل الحسابات (إضافة حساب)</h3>
+            <form id="accountForm">
+                <div class="form-group"><label>كود الحساب:</label><input type="text" id="accCode" required></div>
+                <div class="form-group"><label>اسم الحساب:</label><input type="text" id="accName" required></div>
+                <div class="form-group"><label>الحساب الرئيسي:</label><input type="text" id="accMain"></div>
+                <button type="submit" class="btn">حفظ الحساب</button>
+            </form>
+            <table id="accountsTable">
+                <thead><tr><th>كود الحساب</th><th>اسم الحساب</th><th>الحساب الرئيسي</th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div id="journal" class="tab-content">
+            <h3>القيود اليومية / القيد الافتتاحي</h3>
+            <form id="journalForm">
+                <div class="form-group"><label>رقم القيد:</label><input type="number" id="jNum" required></div>
+                <div class="form-group"><label>التاريخ:</label><input type="date" id="jDate" required></div>
+                <div class="form-group"><label>البيان:</label><input type="text" id="jDesc" required></div>
+                <div class="form-group"><label>المدين:</label><input type="number" id="jDebit" value="0"></div>
+                <div class="form-group"><label>الدائن:</label><input type="number" id="jCredit" value="0"></div>
+                <button type="submit" class="btn">تسجيل القيد</button>
+            </form>
+            <table id="journalTable">
+                <thead><tr><th>رقم القيد</th><th>التاريخ</th><th>البيان</th><th>المدين</th><th>الدائن</th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div id="expenses" class="tab-content">
+            <h3>مصروفات مباشرة ومراكز تكلفة</h3>
+            <p>يمكن ربط المصروفات بحسابات مراكز التكلفة المحددة هنا.</p>
+            </div>
+
+        <div id="reports" class="tab-content">
+            <h3>التقارير (ميزان المراجعة / الأرصدة)</h3>
+            <button onclick="generateReport()" class="btn">عرض إجمالي الأرصدة</button>
+            <div id="reportResult" style="margin-top:20px; font-weight:bold;"></div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
